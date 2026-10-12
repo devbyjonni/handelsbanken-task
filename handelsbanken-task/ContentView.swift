@@ -8,12 +8,12 @@ struct ContentView: View {
             switch viewModel.state {
             case .loading:
                 loadingView()
-                
+
             case .success(let resource):
                 mainView(resource: resource)
-                
-            case .error:
-                errorView()
+
+            case .error(let message):
+                errorView(message: message)
             }
         }
         .task {
@@ -33,8 +33,12 @@ struct ContentView: View {
         }
     }
     
-    func errorView() -> some View {
-        EmptyView()
+    func errorView(message: String) -> some View {
+        VStack(spacing: 16) {
+            Text(message)
+
+            Button("Try again", action: refresh)
+        }
     }
     
     private func refresh() {
