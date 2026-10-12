@@ -23,7 +23,6 @@ class ContentViewModel {
         switch response {
         case .success(let resource):
             state = .success(resoure: resource)
-
         case .error(let message):
             state = .error(message: message)
         }

@@ -35,16 +35,6 @@
 			path = "handelsbanken-task";
 			sourceTree = "<group>";
 		};
-		FA29175F307D54CA00E66335 /* handelsbanken-taskTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "handelsbanken-taskTests";
-			sourceTree = "<group>";
-		};
-		FA291769307D54CA00E66335 /* handelsbanken-taskUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "handelsbanken-taskUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				FA291751307D54C700E66335 /* handelsbanken-task */,
-				FA29175F307D54CA00E66335 /* handelsbanken-taskTests */,
-				FA291769307D54CA00E66335 /* handelsbanken-taskUITests */,
 				FA291750307D54C700E66335 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,9 +108,6 @@
 			dependencies = (
 				FA29175E307D54CA00E66335 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				FA29175F307D54CA00E66335 /* handelsbanken-taskTests */,
-			);
 			name = "handelsbanken-taskTests";
 			productName = "handelsbanken-taskTests";
 			productReference = FA29175C307D54CA00E66335 /* handelsbanken-taskTests.xctest */;
@@ -140,9 +125,6 @@
 			);
 			dependencies = (
 				FA291768307D54CA00E66335 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				FA291769307D54CA00E66335 /* handelsbanken-taskUITests */,
 			);
 			name = "handelsbanken-taskUITests";
 			productName = "handelsbanken-taskUITests";
