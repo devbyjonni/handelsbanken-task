@@ -26,11 +26,11 @@ struct ContentView: View {
     func mainView(resource: Resource) -> some View {
         VStack(spacing: 16) {
             Text(resource.text)
-
+            
             Button("Refresh", action: refresh)
-
+            
             NavigationLink {
-                DetailView(text: resource.text)
+                DetailView(resource: resource)
             } label: {
                 Text("Show details")
             }
@@ -40,7 +40,7 @@ struct ContentView: View {
     func errorView(message: String) -> some View {
         VStack(spacing: 16) {
             Text(message)
-
+            
             Button("Try again", action: refresh)
         }
     }
@@ -53,10 +53,22 @@ struct ContentView: View {
 }
 
 struct DetailView: View {
-    let text: String
-
+    let resource: Resource
+    
     var body: some View {
-        Text(text)
+        VStack(spacing: 16) {
+            Text(resource.text)
+            
+            Text(
+                Date(timeIntervalSince1970: resource.time),
+                style: .date
+            )
+            
+            Text(
+                Date(timeIntervalSince1970: resource.time),
+                style: .time
+            )
+        }
     }
 }
 
