@@ -2,42 +2,52 @@ import SwiftUI
 
 struct ContentView: View {
     @State var viewModel = ContentViewModel()
-
+    
     var body: some View {
-        switch viewModel.state {
-        case .loading:
-            loadingView()
-        case .success:
-            mainView()
-        case .error:
-            errorView()
+        Group {
+            switch viewModel.state {
+            case .loading:
+                loadingView()
+                
+            case .success(let resource):
+                mainView(resource: resource)
+                
+            case .error:
+                errorView()
+            }
+        }
+        .task {
+            await viewModel.fetchData()
         }
     }
-
+    
     func loadingView() -> some View {
-        // TODO: Add loading indicator
-        return EmptyView()
+        ProgressView()
     }
-
-    func mainView() -> some View {
-        // TODO: Add content from state and a button to refresh
-
+    
+    func mainView(resource: Resource) -> some View {
         VStack(spacing: 16) {
-            Text("Some text")
-            // TODO: Add a way to navigate to DetailView using NavigationStack
+            Text(resource.text)
+            
+            Button("Refresh", action: refresh)
         }
     }
-
+    
     func errorView() -> some View {
-        // TODO: Add error message and a button to refresh
-        return EmptyView()
+        EmptyView()
+    }
+    
+    private func refresh() {
+        Task {
+            await viewModel.fetchData()
+        }
     }
 }
 
 struct DetailView: View {
     // TODO: Populate with text from result
     let text: String
-
+    
     var body: some View {
         Text(text)
     }
@@ -46,6 +56,6 @@ struct DetailView: View {
 #Preview {
     let resource = Resource(time: Date.now.timeIntervalSince1970, text: "En sån sida")
     let viewModel = ContentViewModel(state: .success(resoure: resource))
-
+    
     ContentView(viewModel: viewModel)
 }
