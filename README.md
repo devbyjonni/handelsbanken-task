@@ -1,3 +1,3 @@
 # Handelsbanken iOS Task
 
-Local working project for the interview assignment.
+Small SwiftUI application created as part of a technical interview assignment.
