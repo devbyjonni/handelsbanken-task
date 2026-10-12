@@ -4,14 +4,12 @@ struct ContentView: View {
     @State var viewModel = ContentViewModel()
     
     var body: some View {
-        Group {
+        NavigationStack {
             switch viewModel.state {
             case .loading:
                 loadingView()
-
             case .success(let resource):
                 mainView(resource: resource)
-
             case .error(let message):
                 errorView(message: message)
             }
@@ -28,8 +26,14 @@ struct ContentView: View {
     func mainView(resource: Resource) -> some View {
         VStack(spacing: 16) {
             Text(resource.text)
-            
+
             Button("Refresh", action: refresh)
+
+            NavigationLink {
+                DetailView(text: resource.text)
+            } label: {
+                Text("Show details")
+            }
         }
     }
     
@@ -49,9 +53,8 @@ struct ContentView: View {
 }
 
 struct DetailView: View {
-    // TODO: Populate with text from result
     let text: String
-    
+
     var body: some View {
         Text(text)
     }
