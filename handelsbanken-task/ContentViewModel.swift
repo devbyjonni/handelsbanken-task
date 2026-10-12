@@ -9,12 +9,23 @@ enum ContentState {
 @Observable
 class ContentViewModel {
     var state: ContentState
+    let repository = Repository()
 
     init(state: ContentState = .loading) {
         self.state = state
     }
 
     func fetchData() async {
-        // TODO: Get data from the repository and to show on our UI
+        state = .loading
+
+        let response = await repository.fakeGetData()
+
+        switch response {
+        case .success(let resource):
+            state = .success(resoure: resource)
+
+        case .error(let message):
+            state = .error(message: message)
+        }
     }
 }
